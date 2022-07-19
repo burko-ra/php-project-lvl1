@@ -1,0 +1,11 @@
+{
+    "name": "hexlet/code",
+    "description": "увгсфeducaEducational Project №1: Brain Games",
+    "authors": [
+        {
+            "name": "Roman Burko",
+            "email": "redstone.kem@gmail.com"
+        }
+    ],
+    "require": {}
+}
