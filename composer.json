@@ -13,5 +13,8 @@
     "bin": [
         "bin/brain-games"
       ],
-    "license": "proprietary"
+    "license": "proprietary",
+    "autoload": {
+        "files": ["src/Cli.php"]
+    }
 }
