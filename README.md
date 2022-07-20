@@ -7,4 +7,8 @@
 <br>
 <br>
 ### Example:
+<h5>brain-even</h1>
 [![asciicast](https://asciinema.org/a/509754.svg)](https://asciinema.org/a/509754)
+<br>
+<h5>brain-calc</h1>
+[![asciicast](https://asciinema.org/a/509882.svg)](https://asciinema.org/a/509882)
