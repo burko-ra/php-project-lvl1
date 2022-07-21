@@ -31,6 +31,10 @@ switch ($game) {
         $file = __DIR__ . '/Games/Progression.php';
         require_once $file;
         break;
+    case 'brain-prime':
+        $file = __DIR__ . '/Games/Prime.php';
+        require_once $file;
+        break;
 }
 
 if ($score === $goal) {
