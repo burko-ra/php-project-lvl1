@@ -14,7 +14,7 @@ while (($score < $goal) && ($fault === false)) {
     line("Question: %s %s %s", $num1, $operation, $num2);
     $userAnswer = prompt("Your answer");
     $correctAnswer = calculateExpression($num1, $num2, $operation);
-    $result = ($userAnswer === $correctAnswer);
+    $result = (intval($userAnswer) === $correctAnswer);
     $result ? $score++ : $fault = true;
     commentTheAnswer($result, $userAnswer, $correctAnswer);
 }
