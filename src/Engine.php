@@ -16,16 +16,20 @@ $fault = false;
 $game = basename($_SERVER["SCRIPT_NAME"], 'php');
 switch ($game) {
     case 'brain-even':
-        $x = __DIR__ . '/Games/Even.php';
-        require_once $x;        
+        $file = __DIR__ . '/Games/Even.php';
+        require_once $file;        
         break;
     case 'brain-calc':
-        $x = __DIR__ . '/Games/Calc.php';
-        require_once $x;
+        $file = __DIR__ . '/Games/Calc.php';
+        require_once $file;
         break;
     case 'brain-gcd':
-        $x = __DIR__ . '/Games/GCD.php';
-        require_once $x;
+        $file = __DIR__ . '/Games/GCD.php';
+        require_once $file;
+        break;
+    case 'brain-progression':
+        $file = __DIR__ . '/Games/Progression.php';
+        require_once $file;
         break;
 }
 
