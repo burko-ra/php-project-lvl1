@@ -8,10 +8,10 @@
 <br>
 ### Example:
 <h5>brain-even</h5>
-[![asciicast](https://asciinema.org/a/509754.svg)](https://asciinema.org/a/509754)
+<a href="https://asciinema.org/a/509754" target="_blank"><img src="https://asciinema.org/a/509754.svg" /></a>
 <br>
 <h5>brain-calc</h5>
-[![asciicast](https://asciinema.org/a/509882.svg)](https://asciinema.org/a/509882)
+<a href="https://asciinema.org/a/509882" target="_blank"><img src="https://asciinema.org/a/509882.svg" /></a>
 <br>
 <h5>brain-gcd</h5>
-[![asciicast](https://asciinema.org/a/509958.svg)](https://asciinema.org/a/509958)
+<a href="https://asciinema.org/a/509958" target="_blank"><img src="https://asciinema.org/a/509958.svg" /></a>
