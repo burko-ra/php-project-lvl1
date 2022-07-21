@@ -23,6 +23,10 @@ switch ($game) {
         $x = __DIR__ . '/Games/Calc.php';
         require_once $x;
         break;
+    case 'brain-gcd':
+        $x = __DIR__ . '/Games/GCD.php';
+        require_once $x;
+        break;
 }
 
 if ($score === $goal) {

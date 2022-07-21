@@ -52,3 +52,38 @@ function commentTheAnswer($resultBool, $userAnswer, $correctAnswer)
         line("'%s' is wrong answer ;(. Correct answer was '%s'.", $userAnswer, $correctAnswer);
     }
 }
+
+function gcd(): array
+{
+    $randMin = 1;
+    $randMax = 6;
+    $basePart = rand($randMin, $randMax);
+    $simplePart = [1, 2, 3, 5, 7];
+    $lenghtSimple = count($simplePart);
+    $rand1 = rand(0, $lenghtSimple - 1);
+    $rand2 = rand(0, $lenghtSimple - 1);
+    $num1 = $basePart * $simplePart[$rand1];
+    $num2 = $basePart * $simplePart[$rand2];
+    return [$num1, $num2];
+}
+
+function calculateGCD($num1, $num2): int
+{
+    if (($num1 === 0) || ($num2 === 0)) {
+        return null;
+    }
+    if ($num1 === $num2) {
+        return $num1;
+    }
+    $a = max($num1, $num2);
+    $b = min($num1, $num2);
+    do {
+        $x = $a % $b;
+        if ($x === 0) {
+            return $b;
+        } else {
+            $a = $b;
+            $b = $x;
+        }
+    } while ($x !== 0);
+}
