@@ -28,7 +28,7 @@ function generateExpression(): array
     return [$num1, $num2, $list[$operation]];
 }
 
-function calculateExpression($num1, $num2, $operation): string
+function calculateExpression($num1, $num2, $operation): int
 {
     switch ($operation) {
         case '+':
