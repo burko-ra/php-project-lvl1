@@ -70,4 +70,3 @@ function play($game)
         line("Something went wrong");
     }
 }
-

@@ -9,7 +9,7 @@ function playBrainCalc(): array
     $num1 = rand($randMin, $randMax);
     $num2 = rand($randMin, $randMax);
     $listOperations = ['+', '-', '*'];
-    $numOperation = rand(0, count($listOperations)-1);
+    $numOperation = rand(0, count($listOperations) - 1);
     $operation = $listOperations[$numOperation];
 
     switch ($operation) {
