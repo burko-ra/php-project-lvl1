@@ -2,17 +2,29 @@
 
 namespace BrainGames\Progression;
 
-use function cli\line;
-use function cli\prompt;
-use function BrainGames\Lib\generateProgression;
-use function BrainGames\Lib\commentTheAnswer;
+function playBrainProgression(): array
+{
+    $startMin = -10;
+    $startMax = 10;
+    $start = rand($startMin, $startMax);
+    $stepMin = -3;
+    $stepMax = 5;
 
-line('What number is missing in the progression?');
-while (($score < $goal) && ($fault === false)) {
-    [$progression, $correctAnswer] = generateProgression();
-    line("Question: %s", $progression);
-    $userAnswer = prompt("Your answer");
-    $result = (intval($userAnswer) === $correctAnswer);
-    $result ? $score++ : $fault = true;
-    commentTheAnswer($result, $userAnswer, $correctAnswer);
+    do {
+        $step = rand($stepMin, $stepMax);
+    } while ($step === 0);
+
+    $length = 10;
+    $progression[0] = $start;
+
+    for ($i = 1; $i < $length; $i++) {
+        $progression[$i] = $progression[$i - 1] + $step;
+    }
+
+    $missingElementNum = rand(0, $length - 1);
+    $missingElementValue = $progression[$missingElementNum];
+    $progression[$missingElementNum] = '..';
+    $question = implode(' ', $progression);
+    $correctAnswer = "$missingElementValue";
+    return [$question, $correctAnswer];
 }

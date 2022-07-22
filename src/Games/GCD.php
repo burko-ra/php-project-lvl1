@@ -2,19 +2,40 @@
 
 namespace BrainGames\GCD;
 
-use function cli\line;
-use function cli\prompt;
-use function BrainGames\Lib\gcd;
-use function BrainGames\Lib\calculateGCD;
-use function BrainGames\Lib\commentTheAnswer;
+function playBrainGCD(): array
+{
+    $randMin = 1;
+    $randMax = 6;
+    $basePart = rand($randMin, $randMax);
+    $simplePart = [1, 2, 3, 5, 7];
+    $lenghtSimple = count($simplePart);
+    $rand1 = rand(0, $lenghtSimple - 1);
+    $rand2 = rand(0, $lenghtSimple - 1);
+    $num1 = $basePart * $simplePart[$rand1];
+    $num2 = $basePart * $simplePart[$rand2];
 
-line('Find the greatest common divisor of given numbers.');
-while (($score < $goal) && ($fault === false)) {
-    [$num1, $num2] = gcd();
-    line("Question: %s %s", $num1, $num2);
-    $userAnswer = prompt("Your answer");
-    $correctAnswer = calculateGCD($num1, $num2);
-    $result = (intval($userAnswer) === $correctAnswer);
-    $result ? $score++ : $fault = true;
-    commentTheAnswer($result, $userAnswer, $correctAnswer);
+    if (($num1 === 0) || ($num2 === 0)) {
+        $result = null;
+    }
+
+    if ($num1 === $num2) {
+        $result = $num1;
+    }
+
+    $a = max($num1, $num2);
+    $b = min($num1, $num2);
+
+    do {
+        $x = $a % $b;
+        if ($x === 0) {
+            $result = $b;
+        } else {
+            $a = $b;
+            $b = $x;
+        }
+    } while ($x !== 0);
+
+    $question = "$num1 $num2";
+    $correctAnswer = strval($result);
+    return [$question, $correctAnswer];
 }
