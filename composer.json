@@ -20,7 +20,13 @@
       ],
     "license": "MIT",
     "autoload": {
-        "files": ["src/Lib.php", "src/Engine.php"]
+        "files": [
+        "src/Games/Even.php",
+        "src/Games/Calc.php",
+        "src/Games/GCD.php",
+        "src/Games/Progression.php",
+        "src/Games/Prime.php",
+        "src/Engine.php"]
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.7"

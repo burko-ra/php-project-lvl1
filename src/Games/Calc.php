@@ -2,19 +2,29 @@
 
 namespace BrainGames\Calc;
 
-use function cli\line;
-use function cli\prompt;
-use function BrainGames\Lib\generateExpression;
-use function BrainGames\Lib\calculateExpression;
-use function BrainGames\Lib\commentTheAnswer;
+function playBrainCalc(): array
+{
+    $randMin = 1;
+    $randMax = 10;
+    $num1 = rand($randMin, $randMax);
+    $num2 = rand($randMin, $randMax);
+    $listOperations = ['+', '-', '*'];
+    $numOperation = rand(0, count($listOperations)-1);
+    $operation = $listOperations[$numOperation];
 
-line('What is the result of the expression?');
-while (($score < $goal) && ($fault === false)) {
-    [$num1, $num2, $operation] = generateExpression();
-    line("Question: %s %s %s", $num1, $operation, $num2);
-    $userAnswer = prompt("Your answer");
-    $correctAnswer = calculateExpression($num1, $num2, $operation);
-    $result = (intval($userAnswer) === $correctAnswer);
-    $result ? $score++ : $fault = true;
-    commentTheAnswer($result, $userAnswer, $correctAnswer);
+    switch ($operation) {
+        case '+':
+            $result = $num1 + $num2;
+            break;
+        case '-':
+            $result = $num1 - $num2;
+            break;
+        case '*':
+            $result = $num1 * $num2;
+            break;
+    }
+
+    $question = "$num1 $operation $num2";
+    $correctAnswer = strval($result);
+    return [$question, $correctAnswer];
 }
