@@ -24,6 +24,7 @@ $questionLine['brain-calc'] = 'What is the result of the expression?';
 $questionLine['brain-gcd'] = 'Find the greatest common divisor of given numbers.';
 $questionLine['brain-progression'] = 'What number is missing in the progression?';
 $questionLine['brain-prime'] = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+$questionLine['brain-games'] = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 line($questionLine[$game]);
 
@@ -43,6 +44,9 @@ while (($score < $goal) && ($fault === false)) {
             break;
         case 'brain-prime':
             [$question, $correctAnswer] = playBrainPrime();
+            break;
+        case 'brain-games':
+            [$question, $correctAnswer] = playBrainEven();
             break;
     }
 
