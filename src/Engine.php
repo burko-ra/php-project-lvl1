@@ -53,9 +53,6 @@ function launchGame(string $game)
         case 'brainPrime':
             [$question, $correctAnswer] = playBrainPrime();
             break;
-        case 'brainGames':
-            [$question, $correctAnswer] = playBrainEven();
-            break;
         default:
             exit();
     }
