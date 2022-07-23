@@ -10,15 +10,18 @@ use function BrainGames\GCD\playBrainGCD;
 use function BrainGames\Progression\playBrainProgression;
 use function BrainGames\Prime\playBrainPrime;
 
-function play($game)
+function welcome()
 {
     line('Welcome to the Brain Games!');
-    $name = prompt('May I have your name?');
-    line("Hello, %s!", $name);
+}
 
-    $score = 0;
-    $goal = 3;
-    $fault = false;
+function greeting($name)
+{
+    line("Hello, %s!", $name);
+}
+
+function explainRules($game)
+{
     $questionLine['brainEven'] = 'Answer "yes" if the number is even, otherwise answer "no".';
     $questionLine['brainCalc'] = 'What is the result of the expression?';
     $questionLine['brainGCD'] = 'Find the greatest common divisor of given numbers.';
@@ -27,46 +30,104 @@ function play($game)
     $questionLine['brainGames'] = 'Answer "yes" if the number is even, otherwise answer "no".';
 
     line($questionLine[$game]);
+}
 
-    while (($score < $goal) && ($fault === false)) {
-        switch ($game) {
-            case 'brainEven':
-                [$question, $correctAnswer] = playBrainEven();
-                break;
-            case 'brainCalc':
-                [$question, $correctAnswer] = playBrainCalc();
-                break;
-            case 'brainGCD':
-                [$question, $correctAnswer] = playBrainGCD();
-                break;
-            case 'brainProgression':
-                [$question, $correctAnswer] = playBrainProgression();
-                break;
-            case 'brainPrime':
-                [$question, $correctAnswer] = playBrainPrime();
-                break;
-            case 'brainGames':
-                [$question, $correctAnswer] = playBrainEven();
-                break;
-        }
-
-        line("Question: %s", $question);
-        $userAnswer = prompt("Your answer");
-        $result = (strtolower($userAnswer) === $correctAnswer);
-        $result ? $score++ : $fault = true;
-
-        if ($result) {
-            line("Correct!");
-        } else {
-            line("'%s' is wrong answer ;(. Correct answer was '%s'.", $userAnswer, $correctAnswer);
-        }
+function launchGame($game)
+{
+    switch ($game) {
+        case 'brainEven':
+            [$question, $correctAnswer] = playBrainEven();
+            break;
+        case 'brainCalc':
+            [$question, $correctAnswer] = playBrainCalc();
+            break;
+        case 'brainGCD':
+            [$question, $correctAnswer] = playBrainGCD();
+            break;
+        case 'brainProgression':
+            [$question, $correctAnswer] = playBrainProgression();
+            break;
+        case 'brainPrime':
+            [$question, $correctAnswer] = playBrainPrime();
+            break;
+        case 'brainGames':
+            [$question, $correctAnswer] = playBrainEven();
+            break;
     }
+    return [$question, $correctAnswer];
+}
 
-    if ($score === $goal) {
+function askQuestion($question)
+{
+    line("Question: %s", $question);
+}
+
+function isResultCorrect($userAnswer, $correctAnswer)
+{
+    return (strtolower($userAnswer) === $correctAnswer);
+}
+
+function commentAnswer($resultBool, $userAnswer, $correctAnswer)
+{
+    if ($resultBool) {
+        line("Correct!");
+    } else {
+        line("'%s' is wrong answer ;(. Correct answer was '%s'.", $userAnswer, $correctAnswer);
+    }
+}
+
+function checkWin($score, $goal)
+{
+    return $score >= $goal;
+}
+
+function checkLoose($mistakes, $maxMistakes)
+{
+    return $mistakes > $maxMistakes;
+}
+
+function finishGame($victory, $defeat, $name)
+{
+    if ($victory) {
         line("Congratulations, %s!", $name);
-    } elseif ($fault === true) {
+    } elseif ($defeat) {
         line("Let's try again, %s!", $name);
     } else {
         line("Something went wrong");
     }
+}
+
+function play($game)
+{
+    welcome();
+
+    $name = prompt('May I have your name?');
+
+    greeting($name);
+
+    $score = 0;
+    $goal = 3;
+    $mistakes = 0;
+    $maxMistakes = 0;
+    $victory = false;
+    $defeat = false;
+
+    explainRules($game);
+
+    while ((!$victory) && (!$defeat)) {
+        [$question, $correctAnswer] = launchGame($game);
+
+        askQuestion($question);
+
+        $userAnswer = prompt("Your answer");
+        $resultBool = isResultCorrect($userAnswer, $correctAnswer);
+
+        commentAnswer($resultBool, $userAnswer, $correctAnswer);
+
+        $resultBool ? $score++ : $mistakes++;
+        $victory = checkWin($score, $goal);
+        $defeat = checkLoose($mistakes, $maxMistakes);
+    }
+
+    finishGame($victory, $defeat, $name);
 }
