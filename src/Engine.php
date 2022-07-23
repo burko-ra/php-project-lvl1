@@ -15,13 +15,14 @@ function welcome()
     line('Welcome to the Brain Games!');
 }
 
-function greeting($name)
+function greeting(string $name)
 {
     line("Hello, %s!", $name);
 }
 
-function explainRules($game)
+function explainRules(string $game)
 {
+    $questionLine = [];
     $questionLine['brainEven'] = 'Answer "yes" if the number is even, otherwise answer "no".';
     $questionLine['brainCalc'] = 'What is the result of the expression?';
     $questionLine['brainGCD'] = 'Find the greatest common divisor of given numbers.';
@@ -32,8 +33,10 @@ function explainRules($game)
     line($questionLine[$game]);
 }
 
-function launchGame($game)
+function launchGame(string $game)
 {
+    $question = '';
+    $correctAnswer = '';
     switch ($game) {
         case 'brainEven':
             [$question, $correctAnswer] = playBrainEven();
@@ -53,21 +56,23 @@ function launchGame($game)
         case 'brainGames':
             [$question, $correctAnswer] = playBrainEven();
             break;
+        default:
+            exit();
     }
     return [$question, $correctAnswer];
 }
 
-function askQuestion($question)
+function askQuestion(string $question)
 {
     line("Question: %s", $question);
 }
 
-function isResultCorrect($userAnswer, $correctAnswer)
+function isResultCorrect(string $userAnswer, string $correctAnswer)
 {
     return (strtolower($userAnswer) === $correctAnswer);
 }
 
-function commentAnswer($resultBool, $userAnswer, $correctAnswer)
+function commentAnswer(bool $resultBool, string $userAnswer, string $correctAnswer)
 {
     if ($resultBool) {
         line("Correct!");
@@ -76,17 +81,17 @@ function commentAnswer($resultBool, $userAnswer, $correctAnswer)
     }
 }
 
-function checkWin($score, $goal)
+function checkWin(int $score, int $goal)
 {
     return $score >= $goal;
 }
 
-function checkLoose($mistakes, $maxMistakes)
+function checkLoose(int $mistakes, int $maxMistakes)
 {
     return $mistakes > $maxMistakes;
 }
 
-function finishGame($victory, $defeat, $name)
+function finishGame(bool $victory, bool $defeat, string $name)
 {
     if ($victory) {
         line("Congratulations, %s!", $name);
@@ -97,7 +102,7 @@ function finishGame($victory, $defeat, $name)
     }
 }
 
-function play($game)
+function play(string $game)
 {
     welcome();
 

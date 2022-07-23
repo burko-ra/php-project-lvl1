@@ -12,14 +12,13 @@ function playBrainGCD(): array
     $num1 = $basePart * $simplePart[$rand1];
     $num2 = $basePart * $simplePart[$rand2];
 
-    if (($num1 === 0) || ($num2 === 0)) {
-        $correctAnswer = null;
-    } elseif ($num1 === $num2) {
+    if ($num1 === $num2) {
         $correctAnswer = strval($num1);
     }
 
     $a = max($num1, $num2);
     $b = min($num1, $num2);
+    $correctAnswer = '';
     do {
         $x = $a % $b;
         if ($x === 0) {

@@ -12,6 +12,7 @@ function playBrainCalc(): array
     $numOperation = rand(0, count($listOperations) - 1);
     $operation = $listOperations[$numOperation];
 
+    
     switch ($operation) {
         case '+':
             $result = $num1 + $num2;
@@ -22,6 +23,9 @@ function playBrainCalc(): array
         case '*':
             $result = $num1 * $num2;
             break;
+        default:
+            $result = null;
+            exit();
     }
 
     $question = "$num1 $operation $num2";

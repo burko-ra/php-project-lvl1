@@ -15,6 +15,7 @@ function playBrainProgression(): array
     } while ($step === 0);
 
     $length = 10;
+    $progression = [];
     $progression[0] = $start;
 
     for ($i = 1; $i < $length; $i++) {
