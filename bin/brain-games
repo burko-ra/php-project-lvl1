@@ -3,5 +3,3 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
-
-BrainGames\Engine\play('brainEven');
