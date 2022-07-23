@@ -12,7 +12,6 @@ function playBrainCalc(): array
     $numOperation = rand(0, count($listOperations) - 1);
     $operation = $listOperations[$numOperation];
 
-    
     switch ($operation) {
         case '+':
             $result = $num1 + $num2;
@@ -24,7 +23,6 @@ function playBrainCalc(): array
             $result = $num1 * $num2;
             break;
         default:
-            $result = null;
             exit();
     }
 
