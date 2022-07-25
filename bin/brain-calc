@@ -4,4 +4,4 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-BrainGames\Engine\play('brainCalc');
+BrainGames\Calc\playBrainCalc();
