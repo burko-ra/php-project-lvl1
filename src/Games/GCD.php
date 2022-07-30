@@ -6,7 +6,7 @@ use function BrainGames\Engine\play;
 
 use const BrainGames\Engine\ROUND_MAX;
 
-function makeNumbers(): int
+function makeNumber(): int
 {
     $randMin = 1;
     $randMax = 20;
@@ -43,8 +43,8 @@ function playBrainGCD()
 
     $gameData = [];
     for ($i = 0; $i < ROUND_MAX; $i++) {
-        $num1 = makeNumbers();
-        $num2 = makeNumbers();
+        $num1 = makeNumber();
+        $num2 = makeNumber();
 
         $a = max($num1, $num2);
         $b = min($num1, $num2);
