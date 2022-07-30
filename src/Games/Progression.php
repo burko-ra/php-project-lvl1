@@ -9,22 +9,18 @@ use const BrainGames\Engine\ROUND_MAX;
 function makeProgression(): array
 {
     $progression = [];
+
     $progressionLength = 10;
     $startMin = -10;
     $startMax = 10;
-    $stepMin = -3;
+    $stepMin = 1;
     $stepMax = 5;
 
     $start = rand($startMin, $startMax);
+    $step = rand($stepMin, $stepMax);
 
-    do {
-        $step = rand($stepMin, $stepMax);
-    } while ($step === 0);
-
-    $progression[0] = $start;
-
-    for ($i = 1; $i < $progressionLength; $i++) {
-        $progression[$i] = $progression[$i - 1] + $step;
+    for ($i = 0; $i < $progressionLength; $i++) {
+        $progression[$i] = $start + $step * $i;
     }
 
     return $progression;
@@ -37,9 +33,11 @@ function playBrainProgression()
     $gameData = [];
     for ($i = 0; $i < ROUND_MAX; $i++) {
         $progression = makeProgression();
+
         $missingElementNum = rand(0, count($progression) - 1);
         $missingElementValue = $progression[$missingElementNum];
         $progression[$missingElementNum] = '..';
+
         $question = implode(' ', $progression);
         $correctAnswer = "$missingElementValue";
         $gameData[] = [$question, $correctAnswer];
