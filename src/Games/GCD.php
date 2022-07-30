@@ -19,7 +19,7 @@ function findGCD(int $num1, int $num2): int
     if (($num1 < 1) || $num2 < 1) {
         throw new \Exception("Incorrect input data: '{$num1} {$num2}'");
     }
-    
+
     $a = max($num1, $num2);
     $b = min($num1, $num2);
 
