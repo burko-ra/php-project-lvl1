@@ -34,7 +34,7 @@ function playBrainGCD()
         do {
             $x = $a % $b;
             if ($x === 0) {
-                $correctAnswer = strval($b);
+                $correctAnswer = (string) $b;
             } else {
                 $a = $b;
                 $b = $x;
