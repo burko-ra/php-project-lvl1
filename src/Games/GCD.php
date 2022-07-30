@@ -23,7 +23,7 @@ function findGCD(int $num1, int $num2): int
     $a = max($num1, $num2);
     $b = min($num1, $num2);
 
-    $result = 1;
+    $result = 0;
     do {
         $x = $a % $b;
         if ($x === 0) {
