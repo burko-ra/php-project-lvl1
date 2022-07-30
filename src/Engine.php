@@ -17,15 +17,17 @@ function play(string $questionLine, array $gameData)
 
     foreach ($gameData as $round) {
         [$question, $correctAnswer] = $round;
+
         line("Question: %s", $question);
         $userAnswer = prompt("Your answer");
-        if (strtolower($userAnswer) === $correctAnswer) {
-            line("Correct!");
-        } else {
+
+        if (strtolower($userAnswer) !== $correctAnswer) {
             line("'%s' is wrong answer ;(. Correct answer was '%s'.", $userAnswer, $correctAnswer);
             line("Let's try again, %s!", $name);
             exit();
         }
+
+        line("Correct!");
     }
 
     line("Congratulations, %s!", $name);
