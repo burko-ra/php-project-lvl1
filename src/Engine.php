@@ -24,7 +24,7 @@ function play(string $questionLine, array $gameData)
         if (strtolower($userAnswer) !== $correctAnswer) {
             line("'%s' is wrong answer ;(. Correct answer was '%s'.", $userAnswer, $correctAnswer);
             line("Let's try again, %s!", $name);
-            exit();
+            return;
         }
 
         line("Correct!");
