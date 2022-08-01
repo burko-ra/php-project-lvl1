@@ -4,4 +4,4 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-BrainGames\Games\Progression\playBrainProgression();
+BrainGames\Games\Progression\play();

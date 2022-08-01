@@ -2,9 +2,11 @@
 
 namespace BrainGames\Games\Prime;
 
-use function BrainGames\Engine\play;
+use function BrainGames\Engine\runEngine;
 
 use const BrainGames\Engine\ROUND_MAX;
+
+const DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 function isNumberPrime(int $num): bool
 {
@@ -22,10 +24,8 @@ function isNumberPrime(int $num): bool
     return true;
 }
 
-function playBrainPrime()
+function play(): void
 {
-    $questionLine = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-
     $randMin = 2;
     $randMax = 20;
 
@@ -38,5 +38,5 @@ function playBrainPrime()
         $gameData[] = [$question, $correctAnswer];
     }
 
-    play($questionLine, $gameData);
+    runEngine(DESCRIPTION, $gameData);
 }

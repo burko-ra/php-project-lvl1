@@ -2,9 +2,11 @@
 
 namespace BrainGames\Games\Progression;
 
-use function BrainGames\Engine\play;
+use function BrainGames\Engine\runEngine;
 
 use const BrainGames\Engine\ROUND_MAX;
+
+const DESCRIPTION = 'What number is missing in the progression?';
 
 function makeProgression(): array
 {
@@ -26,10 +28,8 @@ function makeProgression(): array
     return $progression;
 }
 
-function playBrainProgression()
+function play(): void
 {
-    $questionLine = 'What number is missing in the progression?';
-
     $gameData = [];
     for ($i = 0; $i < ROUND_MAX; $i++) {
         $progression = makeProgression();
@@ -43,5 +43,5 @@ function playBrainProgression()
         $gameData[] = [$question, $correctAnswer];
     }
 
-    play($questionLine, $gameData);
+    runEngine(DESCRIPTION, $gameData);
 }

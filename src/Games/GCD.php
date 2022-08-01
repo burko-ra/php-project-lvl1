@@ -2,17 +2,11 @@
 
 namespace BrainGames\Games\GCD;
 
-use function BrainGames\Engine\play;
+use function BrainGames\Engine\runEngine;
 
 use const BrainGames\Engine\ROUND_MAX;
 
-function makeNumber(): int
-{
-    $randMin = 1;
-    $randMax = 20;
-    $num = rand($randMin, $randMax);
-    return $num;
-}
+const DESCRIPTION = 'Find the greatest common divisor of given numbers.';
 
 function findGCD(int $num1, int $num2): int
 {
@@ -20,39 +14,38 @@ function findGCD(int $num1, int $num2): int
         throw new \Exception("Incorrect input data: '{$num1} {$num2}'");
     }
 
-    $a = max($num1, $num2);
-    $b = min($num1, $num2);
+    $dividend = max($num1, $num2);
+    $divisor = min($num1, $num2);
 
     $result = 0;
     do {
-        $x = $a % $b;
-        if ($x === 0) {
-            $result = $b;
+        $remainder = $dividend % $divisor;
+
+        if ($remainder === 0) {
+            $result = $divisor;
         } else {
-            $a = $b;
-            $b = $x;
+            $dividend = $divisor;
+            $divisor = $remainder;
         }
-    } while ($x !== 0);
+    } while ($remainder !== 0);
 
     return $result;
 }
 
-function playBrainGCD()
+function play(): void
 {
-    $questionLine = 'Find the greatest common divisor of given numbers.';
+    $randMin = 1;
+    $randMax = 20;
 
     $gameData = [];
     for ($i = 0; $i < ROUND_MAX; $i++) {
-        $num1 = makeNumber();
-        $num2 = makeNumber();
-
-        $a = max($num1, $num2);
-        $b = min($num1, $num2);
+        $num1 = rand($randMin, $randMax);
+        $num2 = rand($randMin, $randMax);
 
         $question = "$num1 $num2";
         $correctAnswer = (string) findGCD($num1, $num2);
         $gameData[] = [$question, $correctAnswer];
     }
 
-    play($questionLine, $gameData);
+    runEngine(DESCRIPTION, $gameData);
 }

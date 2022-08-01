@@ -7,13 +7,13 @@ use function cli\prompt;
 
 const ROUND_MAX = 3;
 
-function play(string $questionLine, array $gameData)
+function runEngine(string $description, array $gameData): void
 {
     line('Welcome to the Brain Games!');
     $name = prompt('May I have your name?');
     line("Hello, %s!", $name);
 
-    line($questionLine);
+    line($description);
 
     foreach ($gameData as $round) {
         [$question, $correctAnswer] = $round;
@@ -21,7 +21,7 @@ function play(string $questionLine, array $gameData)
         line("Question: %s", $question);
         $userAnswer = prompt("Your answer");
 
-        if (strtolower($userAnswer) !== $correctAnswer) {
+        if (mb_strtolower($userAnswer) !== $correctAnswer) {
             line("'%s' is wrong answer ;(. Correct answer was '%s'.", $userAnswer, $correctAnswer);
             line("Let's try again, %s!", $name);
             return;

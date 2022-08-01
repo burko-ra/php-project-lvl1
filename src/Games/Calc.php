@@ -2,9 +2,11 @@
 
 namespace BrainGames\Games\Calc;
 
-use function BrainGames\Engine\play;
+use function BrainGames\Engine\runEngine;
 
 use const BrainGames\Engine\ROUND_MAX;
+
+const DESCRIPTION = 'What is the result of the expression?';
 
 function makeExpression(): array
 {
@@ -20,29 +22,22 @@ function makeExpression(): array
     return [$num1, $num2, $operation];
 }
 
-function calculateExpression(int $num1, int $num2, string $operation)
+function calculateExpression(int $num1, int $num2, string $operation): int
 {
     switch ($operation) {
         case '+':
-            $answer = $num1 + $num2;
-            break;
+            return $num1 + $num2;
         case '-':
-            $answer = $num1 - $num2;
-            break;
+            return $num1 - $num2;
         case '*':
-            $answer = $num1 * $num2;
-            break;
+            return $num1 * $num2;
         default:
             throw new \Exception("Unknown operation: '{$operation}'");
     }
-
-    return $answer;
 }
 
-function playBrainCalc()
+function play(): void
 {
-    $questionLine = 'What is the result of the expression?';
-
     $gameData = [];
     for ($i = 0; $i < ROUND_MAX; $i++) {
         [$num1, $num2, $operation] = makeExpression();
@@ -52,5 +47,5 @@ function playBrainCalc()
         $gameData[] = [$question, $correctAnswer];
     }
 
-    play($questionLine, $gameData);
+    runEngine(DESCRIPTION, $gameData);
 }
