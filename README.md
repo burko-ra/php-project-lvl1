@@ -13,6 +13,14 @@ Brain-games are five mini-games:
 <li><b>brain-prime</b> - answer "yes" if given number is prime. Otherwise answer "no".</li>
 </ol>
 
+### Requirements
+
+PHP: >= 7.4
+
+Composer: ^2.3
+
+GNU make: ^4.2
+
 ### Setup
 
 ```sh
