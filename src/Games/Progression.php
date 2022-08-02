@@ -35,11 +35,10 @@ function play(): void
         $progression = makeProgression();
 
         $missingElementNum = rand(0, count($progression) - 1);
-        $missingElementValue = $progression[$missingElementNum];
+        $correctAnswer = (string) $progression[$missingElementNum];
         $progression[$missingElementNum] = '..';
 
         $question = implode(' ', $progression);
-        $correctAnswer = "$missingElementValue";
         $gameData[] = [$question, $correctAnswer];
     }
 
